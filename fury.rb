@@ -41,8 +41,13 @@ def choose_victim
   when "y"
     puts "Unleashing fury. Enjoy."
   $counter = 1
+  # start off with a kindly gesture of friendship
+  $client.update("#{@victim} hi, i'm a bot designed to annoy you. let's be friends.")
+  # wait for iiiiiiiiiiit.....
+  sleep($seconds)
     # loop for amount of tweets
     begin
+      # spam the stew out of 'em
       $client.update("#{@victim} #{$counter.to_s}")
       puts ("Tweet #{$counter.to_s}")
       $counter += 1
