@@ -7,7 +7,7 @@ A bot made with the twitter gem that composes tweets or initiates a stream of sp
 instructions
 ====
 
-First, make sure you have the twitter gem installed. And of course, download these files and stick them in a handy directory. 
+First, make sure you have the twitter gem installed. And of course, download these files and stick them in a handy directory.
 
 Then you'll want to retrieve the necessary keys and tokens from apps.twitter.com, as well as ensure that your app has read/write/dm permissions.
 
@@ -22,4 +22,4 @@ Create a `keys.yml` file in the same directory as fury.rb and fill it with your 
 ```
 
 
-After that's in order, in Terminal, `cd` to the directory where fury lies and enter `ruby fury.rb`. If everything goes correctly, it should ask `What do you want to do?` with two options. Simply enter `1` or `2` and follow the instructions.
+After that's in order, in Terminal, `cd` to the directory where fury lies and enter `ruby fury.rb`. If everything goes correctly, it should ask `What do you want to do?` with two options. Simply enter `1`, or `2`, etc. and follow the instructions.

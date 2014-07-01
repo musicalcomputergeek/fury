@@ -105,18 +105,21 @@ end
 
 def follow_followers
   @followers = $client.follower_ids # people following me
+  #@numFollowers = @followers.count
+  # follow all the things!
+  #@followers.each(@numFollowers.to_i) do |followerIDs|
   @followers.each do |followerIDs|
     puts "(y/n) You're about to follow everyone following you. Continue?"
     @yn3 = gets.chomp
     case @yn3
     when "y"
       begin
-        $client.follow(followerIDs)
+        $client.follow(@followers)
       end
       puts "You followed them."
       exit
     when "n"
-      puts "Ok....."
+      puts "Nix that."
       exit
     else
       puts "Something went wrong here. Try again."
