@@ -17,10 +17,11 @@ $client = Twitter::REST::Client.new(config)
 
 $client.user(KEYS[:user])
 
-  puts "Account: #{KEYS[:user]}"
+  puts "Account: \e[94m@#{KEYS[:user]}\e[0m"
   puts 'What do you want to do?'
   puts '1. Unleash wrath and fury on a Twitter user'
   puts '2. Tweet a tweet'
+  puts '3. Follow your followers'
 
 # Unleash fury by spamming the user into oblivion
 
@@ -43,6 +44,7 @@ def choose_victim
   $counter = 1
   # start off with a kindly gesture of friendship
   $client.update("#{@victim} hi, i'm a bot designed to annoy you. let's be friends.")
+  puts "Sent friend request :)"
   # wait for iiiiiiiiiiit.....
   sleep($seconds)
     # loop for amount of tweets
@@ -77,8 +79,6 @@ def tweet_tweets
   when "y"
     begin
       $client.update("#{@tweet}")
-      puts "Tweet sent."
-      exit
     rescue Twitter::Error::TooManyRequests => error
       puts "Oops, we are rate limited. We will try again at: #{Time.now + error.rate_limit.reset_in + 5}"
       sleep error.rate_limit.reset_in + 5
@@ -90,6 +90,9 @@ def tweet_tweets
       puts "You already tweeted \"#{@tweet}\""
     rescue Twitter::Error::NotFound => error
       puts "Sorry something went wrong. #{error}"
+    else
+      puts "Tweet sent."
+      exit
     end
   when "n"
     puts "Whatevs, dude."
@@ -97,6 +100,27 @@ def tweet_tweets
   else
     puts "Sorry, that is not acceptable input, try again."
     exit
+  end
+end
+
+def follow_followers
+  @followers = $client.follower_ids # people following me
+  @followers.each do |followerIDs|
+    puts "(y/n) You're about to follow everyone following you. Continue?"
+    @yn3 = gets.chomp
+    case @yn3
+    when "y"
+      begin
+        $client.follow(followerIDs)
+      end
+      puts "You followed them."
+      exit
+    when "n"
+      puts "Ok....."
+      exit
+    else
+      puts "Something went wrong here. Try again."
+    end
   end
 end
 
@@ -108,6 +132,8 @@ when "1"
   choose_victim
 when "2"
   tweet_tweets
+when "3"
+  follow_followers
 else
   puts "Sorry, that is not acceptable input, try again."
   exit
