@@ -3,6 +3,8 @@ fury
 
 A bot made with the twitter gem that composes tweets or initiates a stream of spam tweets from the command line, all in an effort to unleash my fury at any given time on any given twitter account.
 
+Find my website development work at https://timothyreavis.io/
+
 
 instructions
 ====
